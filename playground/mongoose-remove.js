@@ -8,9 +8,9 @@ var {User} = require('./../server/models/user');
 // });
 
 // Todo.findOneAndRemove (fetches data by object)
-Todo.findOneAndRemove({text: "learning node"}).then((todo) => {
-  console.log(todo);
-});
+// Todo.findOneAndRemove({text: "learning node"}).then((todo) => {
+//   console.log(todo);
+// });
 
 //Todo.findByIdAndRemove ( fetch data as string and takes only id)
 // Todo.findByIdAndRemove('5a381694fd6605d7fecfab59').then((todo) => {
