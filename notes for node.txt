@@ -1,0 +1,77 @@
+1. How to install dependencies : npm install <lib to download e.g. express> --save-dev
+2. to call other web services we need require request module in node.js
+
+Express Module uses
+1. redering handlebars
+2. partails
+3. helpers
+
+---- rendering in node we need express and handlebars(node-web-server code)
+app.set('view engine', 'hbs');
+
+app.get('/about', (req, res) => {
+  res.render('about.hbs', {
+    pageTitle: 'About Page',
+    currentYear: new Date().getFullYear()
+  });
+});
+
+create a view page about and it will be rendered.
+
+-----creating partials in node  using express and handlebars
+hbs.registerPartials(__dirname + '/public/partials');  to inform about partials use then go ahead and create partials
+
+ ---Testing--- node-test
+sync:
+module.exports.add = (a,b) => a+b;  // in util file
+
+const expect = require('expect');
+const utils = require('./utils');
+
+it('should add two numbers', () =>{
+  const result = utils.add(33, 11);
+  expect(result).toBe(44).toBeA('number'); // in .test,js file
+async:
+
+module.exports.asynAdd =(a, b, callback) => {
+  setTimeout(() => {
+    callback(a+b);
+  }, 1000)
+};
+
+
+
+it('should async add two numbers', (done) => {
+  utils.asynAdd(9,4,(sum) =>{
+    expect(sum).toBe(13).toBeA('number');
+	done();
+  })
+});
+
+for testing applications we need library:
+expect mocha nodemon supertest
+
+
+How to start database
+C:\Program Files\MongoDB\Server\3.6\bin
+
+the fire this cmd: mongod.exe --dbpath C:\Users\shilpi_work\mongo-data
+
+
+how to deploy app on heroku
+
+set the port  in server.js file
+const port = process.env.PORT || 3000;
+
+then update:
+app.listen(port, () => {
+  console.log(`started on at port ${port}`);
+});
+
+
+
+
+
+doubts:
+1. what is package-lock.json
+2. diffrence between dev/test dependecies and how to change the env

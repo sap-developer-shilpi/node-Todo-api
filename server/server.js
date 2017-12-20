@@ -13,7 +13,7 @@ var app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
-
+// Create todos
 app.post('/todos', (req,res) => {
   var todo = new Todo({
     text: req.body.text
@@ -25,7 +25,7 @@ app.post('/todos', (req,res) => {
    res.status(400).send(err);
  });
 
-})
+});
 
 app.get('/todos', (req,res) => {
   Todo.find().then((todos) => {
@@ -52,7 +52,7 @@ app.get('/todos/:id', (req,res) => {
     res.status(400).send(err);
   });
 
-  // DELETE
+  // DELETE todos with id
 
 app.delete('/todos/:id', (req,res) => {
   var id = req.params.id;
@@ -69,7 +69,7 @@ app.delete('/todos/:id', (req,res) => {
   res.status(400).send(err);
 });
 
-// UPDATE
+// UPDATE todos with id
  app.patch('/todos/:id', (req, res) => {
    var id = req.params.id;
    var body = _.pick(req.body, ['text', 'completed']);
@@ -94,6 +94,22 @@ app.delete('/todos/:id', (req,res) => {
       })
 
  });
+
+ // POST users
+
+app.post('/users', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  var user = new User(body);
+
+  user.save().then(() => {
+    return user.generateAuthToken();
+  }).then((token) => {
+    res.header('x-auth', token).send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  })
+});
+
 
 app.listen(port, () => {
   console.log(`started on at port ${port}`);
