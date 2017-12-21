@@ -35,7 +35,6 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.methods.toJSON = function(){
   var user = this;
-  console.log(user);
   var userObj = user.toObject(); // this converts the user to an object user
   return _.pick(userObj, ['_id', 'email']);
 }
@@ -71,7 +70,6 @@ UserSchema.pre('save', function (next){
   if(user.isModified('password')){
     bcrypt.genSalt(10, (err,salt)=> {
       bcrypt.hash(user.password, salt, (err, hash)=> {
-        console.log(user.password);
         user.password = hash;
         next();
       });

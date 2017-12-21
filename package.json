@@ -22,10 +22,11 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.9",
+    "sails-test-helper": "^0.5.0",
     "validator": "^9.2.0"
   },
   "devDependencies": {
-    "expect": "^21.2.1",
+    "expect": "^22.0.3",
     "mocha": "^4.0.1",
     "nodemon": "^1.13.3",
     "supertest": "^3.0.0"
